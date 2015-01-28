@@ -28,6 +28,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activty.MainActivity" />
         </activity>
+
+        <provider
+            android:name="net.androidsensei.pokedex.provider.PokedexProvider"
+            android:authorities="net.androidsensei.pokedex.provider"
+            android:exported="false" />
+
     </application>
 
 </manifest>

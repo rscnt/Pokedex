@@ -4,10 +4,9 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
-import net.androidsensei.pokedex.data.PokedexContract;
+
 import net.androidsensei.pokedex.data.PokedexDbHelper;
 import net.androidsensei.pokedex.data.PokedexContract.PokemonEntry;
-import net.androidsensei.pokedex.data.PokedexContract.LugarEntry;
 
 public class PokedexDatabaseTest extends AndroidTestCase {
 
@@ -33,7 +32,7 @@ public class PokedexDatabaseTest extends AndroidTestCase {
         values.put(PokemonEntry._ID, id);
         values.put(PokemonEntry.COLUMN_NOMBRE, nombre);
         values.put(PokemonEntry.COLUMN_AVATAR, avatar);
-        values.put(PokemonEntry.COLUMN_NUMERO, numero);
+        values.put(PokemonEntry.COLUMN_UUID, numero);
         values.put(PokemonEntry.COLUMN_ALTURA, altura);
         values.put(PokemonEntry.COLUMN_PESO, peso);
 
@@ -49,7 +48,7 @@ public class PokedexDatabaseTest extends AndroidTestCase {
                 PokemonEntry._ID,
                 PokemonEntry.COLUMN_NOMBRE,
                 PokemonEntry.COLUMN_AVATAR,
-                PokemonEntry.COLUMN_NUMERO,
+                PokemonEntry.COLUMN_UUID,
                 PokemonEntry.COLUMN_ALTURA,
                 PokemonEntry.COLUMN_PESO,
         };

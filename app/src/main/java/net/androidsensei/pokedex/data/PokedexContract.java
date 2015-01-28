@@ -11,15 +11,15 @@ public class PokedexContract implements BaseColumns {
 
         public static final String TABLE_NAME = "pokemons";
 
-        public static final String COLUMN_NOMBRE = "nombre";
+        public static final String COLUMN_NOMBRE = "name";
 
         public static final String COLUMN_AVATAR = "avatar";
 
-        public static final String COLUMN_NUMERO = "numero";
+        public static final String COLUMN_UUID = "uuid";
 
-        public static final String COLUMN_ALTURA = "altura";
+        public static final String COLUMN_ALTURA = "height";
 
-        public static final String COLUMN_PESO = "peso";
+        public static final String COLUMN_PESO = "weight";
 
     }
 

@@ -25,7 +25,7 @@ public class PokedexDbHelper extends SQLiteOpenHelper {
                 PokemonEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 PokemonEntry.COLUMN_AVATAR + " TEXT NOT NULL, " +
                 PokemonEntry.COLUMN_NOMBRE + " TEXT NOT NULL, " +
-                PokemonEntry.COLUMN_NUMERO + " INTEGER NOT NULL, " +
+                PokemonEntry.COLUMN_UUID + " INTEGER NOT NULL, " +
                 PokemonEntry.COLUMN_ALTURA + " REAL NOT NULL, " +
                 PokemonEntry.COLUMN_PESO + " REAL NOT NULL );";
 
