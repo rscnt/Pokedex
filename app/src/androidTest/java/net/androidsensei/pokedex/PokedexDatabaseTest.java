@@ -5,16 +5,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.test.AndroidTestCase;
 
-import net.androidsensei.pokedex.data.PokedexDbHelper;
-import net.androidsensei.pokedex.data.PokedexContract.PokemonEntry;
+import net.androidsensei.pokedex.provider.PokedexSQLiteOpenHelper;
+import net.androidsensei.pokedex.provider.pokemon.PokemonColumns;
 
 public class PokedexDatabaseTest extends AndroidTestCase {
 
     public static final String LOG_TAG = PokedexDatabaseTest.class.getSimpleName();
 
     public void testCreateDb() throws Throwable {
-        mContext.deleteDatabase(PokedexDbHelper.DATABASE_NAME);
-        SQLiteDatabase db = new PokedexDbHelper(this.mContext).getWritableDatabase();
+        mContext.deleteDatabase(PokedexSQLiteOpenHelper.DATABASE_FILE_NAME);
+        SQLiteDatabase db = PokedexSQLiteOpenHelper.getInstance(this.mContext).getWritableDatabase();
         assertEquals(true, db.isOpen());
         db.close();
     }
@@ -24,37 +24,37 @@ public class PokedexDatabaseTest extends AndroidTestCase {
         int id = 1;
         String nombre = "Charizar";
         String avatar = "http://img2.wikia.nocookie.net/__cb20140203022724/p__/protagonist/images/9/95/Charizard.png";
-        int numero = 5;
         double altura = 1.75;
         double peso = 220.25;
+        String uuid = "123456";
 
         ContentValues values = new ContentValues();
-        values.put(PokemonEntry._ID, id);
-        values.put(PokemonEntry.COLUMN_NOMBRE, nombre);
-        values.put(PokemonEntry.COLUMN_AVATAR, avatar);
-        values.put(PokemonEntry.COLUMN_UUID, numero);
-        values.put(PokemonEntry.COLUMN_ALTURA, altura);
-        values.put(PokemonEntry.COLUMN_PESO, peso);
+        values.put(PokemonColumns._ID, id);
+        values.put(PokemonColumns.NAME, nombre);
+        values.put(PokemonColumns.UUID, uuid);
+        values.put(PokemonColumns.AVATAR, avatar);
+        values.put(PokemonColumns.HEIGHT, altura);
+        values.put(PokemonColumns.WEIGHT, peso);
 
-        PokedexDbHelper dbHelper = new PokedexDbHelper(mContext);
+
+        PokedexSQLiteOpenHelper dbHelper = PokedexSQLiteOpenHelper.getInstance(mContext);
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         long pokemonId;
-        pokemonId = db.insert(PokemonEntry.TABLE_NAME, null, values);
+        pokemonId = db.insert(PokemonColumns.TABLE_NAME, null, values);
 
         assertEquals(id,pokemonId);
 
         String[] columns = {
-                PokemonEntry._ID,
-                PokemonEntry.COLUMN_NOMBRE,
-                PokemonEntry.COLUMN_AVATAR,
-                PokemonEntry.COLUMN_UUID,
-                PokemonEntry.COLUMN_ALTURA,
-                PokemonEntry.COLUMN_PESO,
+                PokemonColumns._ID,
+                PokemonColumns.NAME,
+                PokemonColumns.AVATAR,
+                PokemonColumns.HEIGHT,
+                PokemonColumns.WEIGHT,
         };
 
         Cursor cursor = db.query(
-                PokemonEntry.TABLE_NAME,  // Table to Query
+                PokemonColumns.TABLE_NAME,  // Table to Query
                 columns,
                 null, // Columns for the "where" clause
                 null, // Values for the "where" clause
@@ -64,7 +64,7 @@ public class PokedexDatabaseTest extends AndroidTestCase {
         );
 
         if (cursor.moveToFirst()) {
-            int nombreIndex = cursor.getColumnIndex(PokemonEntry.COLUMN_NOMBRE);
+            int nombreIndex = cursor.getColumnIndex(PokemonColumns.NAME);
             String nombrePokemon = cursor.getString(nombreIndex);
 
             assertEquals(nombre, nombrePokemon);

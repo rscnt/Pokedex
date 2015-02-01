@@ -13,7 +13,7 @@ import android.support.annotation.Nullable;
 public interface PokemonModel extends BaseModel {
 
     /**
-     * The name of the pokemon, for instance. Charizard.
+     * The name of the pokemon, for instance: Charizard.
      * Can be {@code null}.
      */
     @Nullable

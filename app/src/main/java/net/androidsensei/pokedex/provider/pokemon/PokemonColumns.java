@@ -1,5 +1,7 @@
 package net.androidsensei.pokedex.provider.pokemon;
 
+import android.content.ContentProvider;
+import android.content.ContentUris;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
@@ -60,4 +62,7 @@ public class PokemonColumns implements BaseColumns {
         return false;
     }
 
+    public static Uri buildPokemonUri(long id) {
+        return ContentUris.withAppendedId(CONTENT_URI, id);
+    }
 }

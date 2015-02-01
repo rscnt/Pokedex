@@ -71,14 +71,21 @@ public class PokedexProvider extends ContentProvider {
         return true;
     }
 
+    public static final String CONTENT_TYPE = "vnd.android.cursor.dir/" + AUTHORITY +
+            "/" + PokemonColumns.TABLE_NAME;
+
+    public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/" + AUTHORITY +
+            "/" + PokemonColumns.TABLE_NAME;
+
+
     @Override
     public String getType(Uri uri) {
         int match = URI_MATCHER.match(uri);
         switch (match) {
             case URI_TYPE_POKEMON:
-                return TYPE_CURSOR_DIR + PokemonColumns.TABLE_NAME;
+                return TYPE_CURSOR_DIR + AUTHORITY + PokemonColumns.TABLE_NAME;
             case URI_TYPE_POKEMON_ID:
-                return TYPE_CURSOR_ITEM + PokemonColumns.TABLE_NAME;
+                return TYPE_CURSOR_ITEM + AUTHORITY + PokemonColumns.TABLE_NAME;
 
         }
         return null;
